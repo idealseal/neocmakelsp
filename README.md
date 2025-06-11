@@ -113,17 +113,8 @@ end
 
 #### `stdio`
 
-```toml
-[[language]]
-name = "cmake"
-auto-format = true
-language-servers = [{ name = "neocmakelsp" }]
-
-[language-server.neocmakelsp]
-command = "neocmakelsp"
-args = ["--stdio"]
-```
-
+As of [3b7aadd](https://github.com/helix-editor/helix/commit/3b7aaddb1391a9e343877ceadb83a41c95ede33f)
+`helix` uses `neocmakelsp` for CMake files by default.
 
 #### `tcp`
 
