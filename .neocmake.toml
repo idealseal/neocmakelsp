@@ -1,3 +1,5 @@
-command_upcase = "ignore" # "lowcase", "upcase"
+# Default: unset
+# Possible values: uppercase, lowercase
+#case = "lowercase",
 enable_external_cmake_lint = false # true to use external cmake-lint
-line_max_words = 80 # internal lint just supports longest check
+line_max_words = 80                # internal lint just supports longest check

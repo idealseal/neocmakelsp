@@ -4,9 +4,10 @@ use std::sync::LazyLock;
 use dirs::config_dir;
 use serde::Deserialize;
 
-#[derive(Deserialize, PartialEq, Eq, Debug)]
+#[derive(Debug, PartialEq, Eq, Deserialize)]
 pub struct Config {
-    pub command_upcase: String,
+    #[serde(alias = "command_upcase")]
+    pub case: Option<Case>,
     pub enable_external_cmake_lint: bool,
     pub line_max_words: usize,
     pub format: FormatConfig,
@@ -15,7 +16,7 @@ pub struct Config {
 impl Default for Config {
     fn default() -> Self {
         Self {
-            command_upcase: "ignore".to_string(),
+            case: None,
             enable_external_cmake_lint: false,
             line_max_words: 80,
             format: FormatConfig::default(),
@@ -23,41 +24,44 @@ impl Default for Config {
     }
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Deserialize)]
+pub enum Case {
+    #[serde(rename = "uppercase", alias = "upcase")]
+    Upper,
+    #[serde(rename = "lowercase")]
+    Lower,
+}
+
+#[derive(Debug, Default)]
 pub struct LintSuggestion {
-    pub command_upcase: String,
-    pub hint: String,
+    pub case: Option<Case>,
+    pub hint: &'static str,
 }
 
 impl LintSuggestion {
-    pub fn lint_match(&self, upcase: bool) -> bool {
+    pub fn lint_match(&self, is_uppercase: bool) -> bool {
         matches!(
-            (self.command_upcase.as_str(), upcase),
-            ("upcase", true) | ("lowercase", false) | ("ignore", _)
+            (self.case, is_uppercase),
+            (Some(Case::Upper), true) | (Some(Case::Lower), false) | (None, _)
         )
     }
 }
 
-impl From<String> for LintSuggestion {
-    fn from(command_upcase: String) -> Self {
-        match command_upcase.as_str() {
-            "upcase" => Self {
-                command_upcase,
-                hint: "suggested to use upcase".to_owned(),
+impl From<Option<Case>> for LintSuggestion {
+    fn from(value: Option<Case>) -> Self {
+        match value {
+            Some(Case::Upper) => Self {
+                case: Some(Case::Upper),
+                hint: "Use uppercase command names",
             },
-            "lowercase" => Self {
-                command_upcase,
-                hint: "suggested to use lowercase".to_owned(),
+            Some(Case::Lower) => Self {
+                case: Some(Case::Lower),
+                hint: "Use lowercase command names",
             },
-            _ => Self::default(),
-        }
-    }
-}
-
-impl Default for LintSuggestion {
-    fn default() -> Self {
-        Self {
-            command_upcase: "ignore".to_string(),
-            hint: "".to_owned(),
+            None => Self {
+                case: None,
+                hint: "",
+            },
         }
     }
 }
@@ -104,5 +108,4 @@ pub static CONFIG: LazyLock<Config> = LazyLock::new(|| {
     Config::default()
 });
 
-pub static CMAKE_LINT: LazyLock<LintSuggestion> =
-    LazyLock::new(|| CONFIG.command_upcase.clone().into());
+pub static CMAKE_LINT: LazyLock<LintSuggestion> = LazyLock::new(|| CONFIG.case.into());

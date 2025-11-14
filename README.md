@@ -179,8 +179,10 @@ Lint is controlled by a configuration file. The configuration file can be at the
 * Windows: `{FOLDERID_RoamingAppData}/neocmakelsp/config.toml`
 
 ```toml
-command_upcase = "ignore" # "lowercase", "upcase"
+# Default: unset
+case = "lowercase"
 ```
+
 This will check the case of all commands.
 
 ### `cmake-lint` integration

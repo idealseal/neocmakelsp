@@ -192,7 +192,7 @@ fn checkerror_inner<P: AsRef<Path>>(
             output.push(ErrorInformation {
                 start_point: ids.start_position(),
                 end_point: ids.end_position(),
-                message: config::CMAKE_LINT.hint.clone(),
+                message: config::CMAKE_LINT.hint.to_owned(),
                 severity: Some(DiagnosticSeverity::HINT),
             });
         }
