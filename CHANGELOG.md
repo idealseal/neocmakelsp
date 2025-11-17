@@ -1,4 +1,27 @@
-# Neocmakelsp
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [0.9.0-rc.0] - 2025-11-17
+
+### Added
+
+- Add toml formatting rules
+
+### Changed
+
+- Release v0.9.0-rc.0
+- Switch to rust specific release actions
+- Run lints on each platform only once
+- Pin and update deps
+- Make cli exclusively subcommand based
+- Bump MSRV to 1.89.0
+- Trim completion documentation
+- Bump crate-ci/typos from 1.38.1 to 1.39.0
+- Rework config file format and resolution
 
 ## 0.8.30
 
@@ -15,24 +38,30 @@
   open an issue for me, I will try to fix it
 
 ## 0.8.20-beta4
+
 - fix that every time save a file, the references will increase, which also cause problems when doing rename
 
 ## 0.8.20-beta3
+
 - fix when using relative cmake path, reference not work properly
 
 ## 0.8.20-beta2
+
 - fix rename do not work for include
 - fix rename not work if position is on definition
 
 ## 0.8.20-beta1
+
 - support real reference
 - support rename
 - to edition 2024
 
 ## 0.8.8
+
 - futures-util v0.3.30 is yanked, so publish new release
 
 ## 0.8.7
+
 - Fix complete when meet comment panic on windows
 - Better way to find the platform prefix thanks to @idealseal
 - improve logging for stdio transport @idealseal
@@ -41,6 +70,7 @@
 - add LTO support by @zamazan4ik
 
 ## 0.8.5
+
 - Add a lot of unit tests
 - Fix that fileapi cache data cannot be updated.
 - Realize the lsp document_link
@@ -53,15 +83,17 @@
 - Now it can jump to `"${SOME_VARIABLE}/some.cmake"` or `"some.cmake"`. It supports to read the variable.
 - Adjust some document format
 
-Full changes: https://github.com/neocmakelsp/neocmakelsp/compare/v0.8.4...v0.8.5
+Full changes: <https://github.com/neocmakelsp/neocmakelsp/compare/v0.8.4...v0.8.5>
 
 ## 0.8.4
+
 - Fix jump to buildin cmake file still not works on temux
 - Try to support find_package on MSYSTEM
 - Add some unit test. Now it is 30% coverage!
 - Now hover and complete will show the comment of cmake
 
 ## 0.8.3
+
 - support reading value from fileapi and use it in completing
 - fix jumping to buildin cmake file not works on temux
 - fix meson build, induce a python wrapper
