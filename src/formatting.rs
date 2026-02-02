@@ -431,8 +431,8 @@ mod tests {
 
     #[test]
     fn test_format_function() {
-        let source = include_str!("../assets_for_test/function/formatbefore.cmake");
-        let sourceafter = include_str!("../assets_for_test/function/formatafter.cmake");
+        let source = include_str!("../tests/assets/function/formatbefore.cmake");
+        let sourceafter = include_str!("../tests/assets/function/formatafter.cmake");
         let formatestr = get_format_cli(source, 1, false, false).unwrap();
         let formatestr_with_lastline = get_format_cli(source, 1, false, true).unwrap();
         assert_eq!(formatestr.as_str(), sourceafter);
@@ -441,8 +441,8 @@ mod tests {
 
     #[test]
     fn test_format_base() {
-        let source = include_str!("../assets_for_test/base/formatbefore.cmake");
-        let sourceafter = include_str!("../assets_for_test/base/formatafter.cmake");
+        let source = include_str!("../tests/assets/base/formatbefore.cmake");
+        let sourceafter = include_str!("../tests/assets/base/formatafter.cmake");
         let formatestr = get_format_cli(source, 1, false, false).unwrap();
         let formatestr_with_lastline = get_format_cli(source, 1, false, true).unwrap();
         assert_eq!(formatestr.as_str(), sourceafter);
@@ -451,8 +451,8 @@ mod tests {
 
     #[test]
     fn test_format_lastline() {
-        let source = include_str!("../assets_for_test/lastline/before.cmake");
-        let sourceafter = include_str!("../assets_for_test/lastline/after.cmake");
+        let source = include_str!("../tests/assets/lastline/before.cmake");
+        let sourceafter = include_str!("../tests/assets/lastline/after.cmake");
         let formatestr = get_format_cli(source, 4, true, false).unwrap();
         let formatestr_with_lastline = get_format_cli(source, 4, true, true).unwrap();
         assert_eq!(formatestr.as_str(), sourceafter);

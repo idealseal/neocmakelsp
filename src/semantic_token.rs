@@ -460,7 +460,7 @@ mod tests {
     #[test]
     fn test_hl() {
         semantic_token_test(include_str!(
-            "../assets_for_test/highlight/bracket_argument.cmake"
+            "../tests/assets/highlight/bracket_argument.cmake"
         ));
     }
 }

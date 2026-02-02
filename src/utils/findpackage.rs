@@ -459,7 +459,7 @@ mod tests {
 
 \")";
         assert_eq!(get_version(projectversion), Some("1.3.14".to_string()));
-        let qmlversion = include_str!("../../assets_for_test/Qt5QmlConfigVersion.cmake");
+        let qmlversion = include_str!("../../tests/assets/Qt5QmlConfigVersion.cmake");
         assert_eq!(get_version(qmlversion), Some("5.15.6".to_string()));
     }
 }

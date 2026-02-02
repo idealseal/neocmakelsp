@@ -118,17 +118,17 @@ mod tests {
 
     #[test]
     fn test_serde() {
-        let origin_json = include_str!("../assets_for_test/fileapi/api.json");
+        let origin_json = include_str!("../tests/assets/fileapi/api.json");
         let json = QueryJson::new(origin_json).unwrap();
 
-        let final_json = include_str!("../assets_for_test/fileapi/fileapifinal.json");
+        let final_json = include_str!("../tests/assets/fileapi/fileapifinal.json");
 
         let json_target: QueryJson = serde_json::from_str(final_json).unwrap();
 
         assert_eq!(json_target, json);
 
         let _cache: Cache = serde_json::from_str(include_str!(
-            "../assets_for_test/fileapi/cache-v2-c1f0b50299da00258c61.json"
+            "../tests/assets/fileapi/cache-v2-c1f0b50299da00258c61.json"
         ))
         .unwrap();
     }

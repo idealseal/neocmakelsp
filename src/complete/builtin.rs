@@ -409,7 +409,7 @@ mod tests {
     // #[test]
     // fn test_cmake_command_builtin() {
     //     // NOTE: In case the command fails, ignore test
-    //     // let output = include_str!("../../assets_for_test/cmake_help_commands.txt");
+    //     // let output = include_str!("../../tests/assets/cmake_help_commands.txt");
     //     let output = gen_builtin_commands();
     //     assert!(output.is_ok());
     // }
@@ -417,7 +417,7 @@ mod tests {
     #[test]
     fn test_gen_builtin_command_signature_resource() {
         let res = gen_builtin_command_signature_resource(include_str!(
-            "../../assets_for_test/cmake_help_commands.txt"
+            "../../tests/assets/cmake_help_commands.txt"
         ));
         let tested_command = res.get("set_property").unwrap();
         println!(
@@ -512,7 +512,7 @@ set, you can not change this variable."
     #[test]
     fn test_cmake_modules_builtin() {
         // NOTE: In case the command fails, ignore test
-        let output = include_str!("../../assets_for_test/cmake_help_commands.txt");
+        let output = include_str!("../../tests/assets/cmake_help_commands.txt");
 
         let output = gen_builtin_modules(output);
 
